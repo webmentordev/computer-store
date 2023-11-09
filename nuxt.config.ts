@@ -5,6 +5,12 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     'nuxt-icon'
   ],
+  runtimeConfig:{
+    "api": process.env.API,
+    public: {
+      "api": process.env.API,
+    }
+  },
   app:{
     head: {
       title: "PC House — Computer Store",
