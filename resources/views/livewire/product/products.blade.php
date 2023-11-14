@@ -7,45 +7,50 @@
             <button x-on:click="open = true" class="py-2 px-4 bg-black text-white font-semibold rounded-md">Create Product</button>
             <div class="fixed top-0 left-0 w-full h-full bg-center bg-white/50 backdrop-blur" x-show="open" x-transition x-cloak>
                 <div class="w-full h-full flex items-center justify-center" x-on:click.self="open = false">
-                    <form wire:submit='create' class="max-w-lg p-6 rounded-lg bg-white shadow-lg w-full">
+                    <form wire:submit='create' class="max-w-2xl p-6 rounded-lg bg-white shadow-lg w-full">
                         <h1 class="text-4xl mb-3">Create Products</h1>
                         
                         @if (session('success'))
                             <p class="text-center py-3 text-green-600">{{ session('success') }}</p>
                         @endif
                         
-                        <div class="w-full mb-3">
-                            <x-input-label for="title" :value="__('Title')" />
-                            <x-text-input type="text" wire:model.live='title' />
-                            <x-input-error :messages="$errors->get('title')" class="mt-2" />
-                        </div>
-                        <div class="w-full mb-3">
-                            <x-input-label for="price" :value="__('Price')" />
-                            <x-text-input type="number" step="0.01" wire:model.live='price' />
-                            <x-input-error :messages="$errors->get('price')" class="mt-2" />
-                        </div>
-                        <div class="w-full mb-3">
-                            <x-input-label for="description" :value="__('Description')" />
-                            <x-text-input type="text" wire:model.live='description' />
-                            <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                        <div class="grid grid-cols-2 gap-5">
+                            <div class="w-full mb-3">
+                                <x-input-label for="title" :value="__('Title')" />
+                                <x-text-input type="text" wire:model.live='title' />
+                                <x-input-error :messages="$errors->get('title')" class="mt-2" />
+                            </div>
+                            <div class="w-full mb-3">
+                                <x-input-label for="price" :value="__('Price')" />
+                                <x-text-input type="number" step="0.01" wire:model.live='price' />
+                                <x-input-error :messages="$errors->get('price')" class="mt-2" />
+                            </div>
                         </div>
 
-                        <div class="w-full mb-3">
-                            <x-input-label for="content" :value="__('Content')" />
-                            <x-text-input type="text" wire:model.live='content' />
-                            <x-input-error :messages="$errors->get('content')" class="mt-2" />
-                        </div>
-
-                        <div class="w-full mb-3">
-                            <x-input-label for="seo" :value="__('SEO')" />
-                            <x-text-input type="text" wire:model.live='seo' />
-                            <x-input-error :messages="$errors->get('seo')" class="mt-2" />
+                        <div class="grid grid-cols-2 gap-5">
+                            <div class="w-full mb-3">
+                                <x-input-label for="description" :value="__('Description')" />
+                                <x-text-input type="text" wire:model.live='description' />
+                                <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                            </div>
+    
+                            <div class="w-full mb-3">
+                                <x-input-label for="seo" :value="__('SEO')" />
+                                <x-text-input type="text" wire:model.live='seo' />
+                                <x-input-error :messages="$errors->get('seo')" class="mt-2" />
+                            </div>
                         </div>
 
                         <div class="w-full mb-3">
                             <x-input-label for="image" :value="__('Product Image')" />
                             <x-text-input type="file" accept="image/*" wire:model.live='image' />
                             <x-input-error :messages="$errors->get('image')" class="mt-2" />
+                        </div>
+
+                        <div class="w-full mb-3" wire:ignore>
+                            <x-input-label for="content" :value="__('Content')" />
+                            <textarea id="editor" wire:model.live='content'></textarea>
+                            <x-input-error :messages="$errors->get('content')" class="mt-2" />
                         </div>
                         <x-primary-button>
                             {{ __('Create') }}
@@ -67,7 +72,7 @@
                     <th class="p-2 text-end">Created</th>
                 </tr>
                 @foreach ($products as $product)
-                    <tr class="text-sm">
+                    <tr class="text-sm odd:bg-gray-50 border-y border-gray-200 text-gray-500">
                         <td class="p-2 text-start"><a href="{{ asset('/storage/'. $product->image) }}" target="_blank"><img class="rounded-full" src="{{ asset('/storage/'. $product->image) }}" width="35px" height="35px"></a></td>
                         <td class="text-start">{{ $product->stripe_id }}</td>
                         <td class="text-start">{{ $product->title }}</td>
@@ -81,4 +86,14 @@
             <p class="text-center py-4">No products data found!</p>
         @endif
     </div>
+    <script src="//cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace( 'editor', {
+            filebrowserUploadUrl: "{{route('upload', ['_token' => csrf_token() ])}}",
+            filebrowserUploadMethod: 'form'
+        });
+        CKEDITOR.instances.editor.on('change', function() {
+            @this.set('content', CKEDITOR.instances.editor.getData());
+        });
+    </script>
 </div>
