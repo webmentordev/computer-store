@@ -8,6 +8,22 @@
     font-family: 'Space Grotesk', sans-serif;
 }
 
+[x-cloak]{
+    display: none !important;
+}
+
+body{
+    @apply bg-main-gray;
+}
+
 h1,h2,h3{
     @apply font-semibold;
+}
+
+.link a{
+    @apply font-semibold flex items-center hover:text-indigo-500 mb-1;
+}
+
+.link a span{
+    @apply ml-2 text-lg mt-1;
 }

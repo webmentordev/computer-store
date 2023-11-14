@@ -1,3 +1,3 @@
-<div>
-    {{-- A good traveler has no fixed plans and is not intent upon arriving. --}}
-</div>
+<section>
+    <h1>Welcome to Home page!</h1>
+</section>
