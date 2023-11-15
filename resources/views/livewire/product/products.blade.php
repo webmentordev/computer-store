@@ -41,6 +41,34 @@
                             </div>
                         </div>
 
+
+                        <div class="grid grid-cols-2 gap-5">
+                            <div class="w-full mb-3">
+                                <x-input-label for="category" :value="__('Category')" />
+                                <x-select id="category" wire:model.live='category'>
+                                    <option value="" selected>--Please select Category--</option>
+                                    @foreach ($categories as $parent)
+                                        <option value="{{ $parent->id }}">{{ $parent->name }}</option>
+                                    @endforeach
+                                </x-select>
+                                <x-input-error :messages="$errors->get('category')" class="mt-2" />
+                            </div>
+                            <div class="w-full mb-3">
+                                <x-input-label for="sub_category" :value="__('Sub Category')" />
+                                <x-select id="sub_category" wire:model.live='sub_category' :disabled="count($sub_categories) == 0">
+                                    @if (count($sub_categories) > 0)
+                                        <option value="" selected>--Please select Sub Category--</option>
+                                        @foreach ($sub_categories as $sub)
+                                            <option value="{{ $sub->id }}">{{ $sub->name }}</option>
+                                        @endforeach
+                                    @else
+                                        <option value="" selected>Select Category first</option>
+                                    @endif
+                                </x-select>
+                                <x-input-error :messages="$errors->get('category')" class="mt-2" />
+                            </div>
+                        </div>
+
                         <div class="w-full mb-3">
                             <x-input-label for="image" :value="__('Product Image')" />
                             <x-text-input type="file" accept="image/*" wire:model.live='image' />
