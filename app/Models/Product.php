@@ -18,6 +18,8 @@ class Product extends Model
         'seo',
         'image',
         'is_active',
+        'category_id',
+        'sub_category_id',
         'is_featured'
     ];
 }

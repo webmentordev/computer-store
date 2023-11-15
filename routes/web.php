@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UploadController;
+use App\Livewire\Categories\MainCategory;
+use App\Livewire\Categories\SubCategory;
 use App\Livewire\Dashboard;
 use App\Livewire\Home;
 use App\Livewire\Product\Products;
@@ -16,6 +18,10 @@ Route::middleware(['auth', 'verified', 'is_admin'])->prefix('admin')->group(func
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     // Product Routes
     Route::get('/products/listing', Products::class)->name('product.listing');
+
+    // Product Category Routes
+    Route::get('/category/main', MainCategory::class)->name('category.main');
+    Route::get('/category/sub', SubCategory::class)->name('category.sub');
 
 
     Route::post('/upload', [UploadController::class, 'store'])->name('upload');

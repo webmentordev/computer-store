@@ -27,3 +27,7 @@ h1,h2,h3{
 .link a span{
     @apply ml-2 text-lg mt-1;
 }
+
+.link button span{
+    @apply ml-2 text-lg mt-1;
+}
