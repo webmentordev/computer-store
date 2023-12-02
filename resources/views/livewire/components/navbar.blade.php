@@ -6,16 +6,15 @@
         <a href="{{ route('product.listing') }}"><img width="20" src="https://api.iconify.design/noto-v1:outbox-tray.svg"><span @if (Request::is('admin/products/listing')) class="text-indigo-600" @endif>Products</span></a>
         <div x-data="{ open: false}" class="relative">
             <button class="flex items-center" x-on:click="open = !open"><img width="20" src="https://api.iconify.design/icon-park:tree-list.svg?color=%23000000"><span class="font-semibold ml-2">Categories</span><img width="20" src="https://api.iconify.design/material-symbols:arrow-drop-down-rounded.svg?color=%23000000"></button>
-            <div class="shadow-md bg-white p-4 absolute top-6 translate-y-3 left-0 rounded-lg w-full" x-show="open" x-cloak x-transition>
+            <div class="shadow-md bg-white p-4 absolute top-6 translate-y-3 left-0 rounded-lg w-full z-10" x-show="open" x-cloak x-transition>
                 <a wire:navigate href="{{ route('category.main') }}"><img src="https://api.iconify.design/material-symbols:arrow-right-rounded.svg?color=%23000000"> Categoryies</a>
                 <a wire:navigate href="{{ route('category.sub') }}"><img src="https://api.iconify.design/material-symbols:arrow-right-rounded.svg?color=%23000000"> Sub Categories</a>
             </div>
         </div>
 
-
         <div x-data="{ open: false}" class="relative">
             <button class="flex items-center" x-on:click="open = !open"><img width="20" src="https://api.iconify.design/fxemoji:inboxtray.svg?color=%23000000"><span class="font-semibold ml-2">Product Stock</span><img width="20" src="https://api.iconify.design/material-symbols:arrow-drop-down-rounded.svg?color=%23000000"></button>
-            <div class="shadow-md bg-white p-4 absolute top-6 translate-y-3 left-0 rounded-lg w-full" x-show="open" x-cloak x-transition>
+            <div class="shadow-md bg-white p-4 absolute top-6 translate-y-3 z-10 left-0 rounded-lg w-full" x-show="open" x-cloak x-transition>
                 <a wire:navigate href="{{ route('stock') }}"><img src="https://api.iconify.design/material-symbols:arrow-right-rounded.svg?color=%23000000"> Stock</a>
                 <a wire:navigate href="{{ route('stock.history') }}"><img src="https://api.iconify.design/material-symbols:arrow-right-rounded.svg?color=%23000000"> Stock History</a>
             </div>

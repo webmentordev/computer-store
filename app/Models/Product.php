@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Stock;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
@@ -22,4 +23,8 @@ class Product extends Model
         'sub_category_id',
         'is_featured'
     ];
+
+    public function stock(){
+        return $this->hasOne(Stock::class);
+    }
 }

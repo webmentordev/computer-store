@@ -1,7 +1,7 @@
 <section class="w-full">
-    <div class="py-6 px-4 max-w-[90%] w-full m-auto">
+    <div class="py-6 px-4 max-w-[1366px] w-full m-auto">
         <h1 class="mb-6 text-3xl">Daily Arrivals!</h1>
-        <div class="grid grid-cols-6 gap-5">
+        <div class="grid grid-cols-5 gap-5">
             @foreach ($products as $product)
                 <div class="bg-white p-6 rounded-xl shadow-sm hover:-translate-y-3 hover:shadow-lg transition-all">
                     <img src="{{ asset('/storage/'.$product->image) }}" class="h-fit max-h-[300px] object-cover mb-5">
@@ -10,7 +10,11 @@
                             <h3>{{ $product->title }}</h3>
                             <span class="font-semibold text-blue-600">US$ {{ number_format($product->price, 2) }}</span>
                         </div>
-                        <button class="py-3 px-4 bg-blue-600 text-white font-semibold rounded-lg">Add To Basket</button>
+                        @if ($product->stock)
+                            <button class="py-3 px-4 bg-blue-600 text-white font-semibold rounded-lg">Add To Basket</button>
+                        @else
+                            <span class="py-3 px-4 bg-black text-white font-semibold rounded-lg">Out Of Stock</span>
+                        @endif
                     </div>
                 </div>
             @endforeach

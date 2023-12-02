@@ -93,7 +93,7 @@
             <table class="w-full">
                 <tr class="bg-gray-100">
                     <th class="p-2 text-start">Image</th>
-                    <th class="text-start">ID#</th>
+                    <th class="text-start">StripeID#</th>
                     <th class="text-start">Name</th>
                     <th>Price</th>
                     <th class="text-end">Slug</th>
