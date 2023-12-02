@@ -31,7 +31,7 @@ class MainCategory extends Component
             'slug' => str_replace(' ', '-', strtolower($this->name))
         ]);
 
-        $this->reset();
+        $this->name = "";
         session()->flash('success', 'Category has been created!');
     }
 }

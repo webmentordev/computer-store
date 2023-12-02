@@ -36,7 +36,7 @@ class SubCategory extends Component
             'category_id' => $this->category
         ]);
 
-        $this->reset();
+        $this->name = "";
         session()->flash('success', 'SubCategory has been created!');
     }
 }

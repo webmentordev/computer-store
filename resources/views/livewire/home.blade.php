@@ -1,5 +1,5 @@
 <section class="w-full">
-    <div class="py-6 px-4 max-w-[1366px] w-full m-auto">
+    <div class="py-6 px-4">
         <h1 class="mb-6 text-3xl">Daily Arrivals!</h1>
         <div class="grid grid-cols-5 gap-5">
             @foreach ($products as $product)
