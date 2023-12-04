@@ -95,6 +95,7 @@
                     <th class="p-2 text-start">Image</th>
                     <th class="text-start">StripeID#</th>
                     <th class="text-start">Name</th>
+                    <th class="text-start">Stock</th>
                     <th>Price</th>
                     <th class="text-end">Slug</th>
                     <th class="p-2 text-end">Created</th>
@@ -104,6 +105,12 @@
                         <td class="p-2 text-start"><a href="{{ asset('/storage/'. $product->image) }}" target="_blank"><img class="rounded-full" src="{{ asset('/storage/'. $product->image) }}" width="35px" height="35px"></a></td>
                         <td class="text-start">{{ $product->stripe_id }}</td>
                         <td class="text-start">{{ $product->title }}</td>
+                        <td class="text-start font-semibold">
+                        @if ($product->stock)
+                            <span class="text-blue-600">{{ $product->stock->stock }}</span>
+                        @else
+                            <span class="text-red-600">Out</span>
+                        @endif</td>
                         <td>${{ number_format($product->price, 2) }}</td>
                         <td class="text-end">{{ $product->slug }}</td>
                         <td class="p-2 text-end">{{ $product->created_at->format('D d/m/y H:i:s A') }}</td>

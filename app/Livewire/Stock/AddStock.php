@@ -33,11 +33,18 @@ class AddStock extends Component
             $this->provider = null;
         }
 
-        Stock::create([
-            'stock' => $this->stock,
-            'provider' => $this->provider,
-            'product_id' => $this->product,
-        ]);
+        $stock = Stock::where('product_id', $this->product)->first();
+        
+        if($stock == null){
+            Stock::create([
+                'stock' => $this->stock,
+                'provider' => $this->provider,
+                'product_id' => $this->product,
+            ]);
+        }else{
+            $stock->stock = $stock->stock + $this->stock;
+            $stock->save();
+        }
 
         StockHistory::create([
             'stock' => $this->stock,
@@ -45,7 +52,10 @@ class AddStock extends Component
             'product_id' => $this->product,
         ]);
 
-        $this->reset();
+        $this->stock = 0;
+        $this->product = null;
+        $this->provider = null;
+        
         session()->flash('success', 'New Stock has been added!');
     }
 }

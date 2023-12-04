@@ -58,6 +58,7 @@
                     <th class="text-start">Provider</th>
                     <th class="text-start">Product</th>
                     <th class="p-2 text-end">AddedAt</th>
+                    <th class="p-2 text-end">LastAdded</th>
                 </tr>
                 @foreach ($stocks as $stock)
                     <tr class="text-sm odd:bg-gray-50 border-y border-gray-200 text-gray-500">
@@ -65,6 +66,7 @@
                         <td class="text-start">@if ($stock->provider) {{ $stock->provider }} @else Null @endif</td>
                         <td class="text-start">{{ $stock->product->title }}</td>
                         <td class="p-2 text-end">{{ $stock->created_at->format('D d/m/y H:i:s A') }}</td>
+                        <td class="p-2 text-end">{{ $stock->updated_at->format('D d/m/y H:i:s A') }}</td>
                     </tr>
                 @endforeach
             </table>
