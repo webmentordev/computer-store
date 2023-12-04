@@ -16,6 +16,17 @@ export default {
             },
             colors: {
                 "main-gray": "#F9FAFC"
+            },
+            screens: {
+                "1470px": {
+                    "max": "1470px"
+                },
+                "1270px": {
+                    "max": "1270px"
+                },
+                "980px": {
+                    "max": "980px"
+                }
             }
         },
     },

@@ -1,7 +1,7 @@
 <section class="w-full">
     <div class="py-6 px-4">
         <h1 class="mb-6 text-3xl">Daily Arrivals!</h1>
-        <div class="grid grid-cols-5 gap-5">
+        <div class="grid grid-cols-5 gap-5 1470px:grid-cols-4 1270px:grid-cols-3 980px:grid-cols-2">
             @foreach ($products as $product)
                 <div class="bg-white p-6 rounded-xl shadow-sm hover:-translate-y-3 hover:shadow-lg transition-all">
                     <img src="{{ asset('/storage/'.$product->image) }}" class="h-fit max-h-[300px] object-cover mb-5">

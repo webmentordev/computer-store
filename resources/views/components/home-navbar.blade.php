@@ -9,12 +9,12 @@
                 @foreach ($categories as $item)
                     <div class="group relative p-3 font-semibold w-full flex items-center">
                         <div class="w-full">
-                            <a href="/product-category/{{ $item->slug }}">{{ $item->name }}</a>
+                            <a wire:navigate href="/product-category/{{ $item->slug }}">{{ $item->name }}</a>
                             @if (count($item->subcategory))
                                 <div class="absolute hidden max-w-[400px] z-10 w-full border border-gray-100 p-3 px-5 shadow-sm bg-white rounded-lg -right-[200px] top-0 group-hover:block">
                                     <ul class="flex flex-col">
                                         @foreach ($item->subcategory as $sub)
-                                            <a class="py-2 w-full" href="/product-category/{{ $item->slug }}/{{ $sub->slug }}">{{ $sub->name }}</a>
+                                            <a wire:navigate class="py-2 w-full" href="/product-category/{{ $item->slug }}/{{ $sub->slug }}">{{ $sub->name }}</a>
                                         @endforeach
                                     </ul>
                                 </div>
