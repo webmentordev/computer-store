@@ -7,10 +7,13 @@ use Livewire\Component;
 
 class StocksHistory extends Component
 {
+    public $search;
     public function render()
     {
-        return view('livewire.stock.stocks-history', [
-            'stocks' => StockHistory::latest()->with('product')->get()
-        ]);
+        $stocks = StockHistory::whereHas('product', function ($query) {
+            $query->where('title', 'like', '%' . $this->search . '%');
+        })->get();
+
+        return view('livewire.stock.stocks-history', compact('stocks'));
     }
 }

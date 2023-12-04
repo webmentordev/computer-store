@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class AddStock extends Component
 {
-    public $provider = null, $product, $stock = 0;
+    public $provider = null, $product, $stock = 0, $search = "";
 
     protected $rules = [
         'provider' => 'nullable|max:255',
@@ -19,8 +19,12 @@ class AddStock extends Component
 
     public function render()
     {
+        $stocks = Stock::whereHas('product', function ($query) {
+            $query->where('title', 'like', '%' . $this->search . '%');
+        })->get();
+
         return view('livewire.stock.add-stock', [
-            'stocks' => Stock::latest()->with('product')->get(),
+            'stocks' => $stocks,
             'products' => Product::latest()->get()
         ]);
     }

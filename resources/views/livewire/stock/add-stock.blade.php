@@ -51,6 +51,7 @@
     </div>
     <div class="w-full">
         <p class="mb-3 text-yellow-500 py-2 pl-3 border-l border-yellow-500 w-full bg-yellow-600/10">Add stock for products in this section. Stock history will also be created so you can check the old stock history, such as what you have added in the past.</p>
+        <x-text-input type="search" class="mb-4" wire:model.live='search' placeholder="Search history by product name..." />
         @if (count($stocks))
             <table class="w-full">
                 <tr class="bg-gray-100">
