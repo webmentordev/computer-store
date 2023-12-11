@@ -29,6 +29,7 @@
                     <a href="{{ route('dashboard') }}" class="font-bold" wire:navigate> - Dashboard</a>
                 @endauth
             </div>
+            <a href="#">{{ $cart_items }}</a>
         </div>
     </div>
 </nav>

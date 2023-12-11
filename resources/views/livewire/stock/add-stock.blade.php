@@ -50,7 +50,7 @@
         </div>
     </div>
     <div class="w-full">
-        <p class="mb-3 text-yellow-500 py-2 pl-3 border-l border-yellow-500 w-full bg-yellow-600/10">Add stock for products in this section. Stock history will also be created so you can check the old stock history, such as what you have added in the past.</p>
+        <p class="mb-3 text-yellow-500 py-2 pl-3 border-l border-yellow-500 w-full bg-yellow-600/10">Add stock for products in this section. Stock history will also be created so you can check the old stock history, such as what you have added in the past. The 'lastAdded' status will stay 'New' until you add a new stock. 'New' indicates the first-ever stock.</p>
         <x-text-input type="search" class="mb-4" wire:model.live='search' placeholder="Search history by product name..." />
         @if (count($stocks))
             <table class="w-full">
@@ -67,7 +67,13 @@
                         <td class="text-start">@if ($stock->provider) {{ $stock->provider }} @else Null @endif</td>
                         <td class="text-start">{{ $stock->product->title }}</td>
                         <td class="p-2 text-end">{{ $stock->created_at->format('D d/m/y H:i:s A') }}</td>
-                        <td class="p-2 text-end">{{ $stock->updated_at->format('D d/m/y H:i:s A') }}</td>
+                        <td class="p-2 text-end">
+                            @if ($stock->updated_at == $stock->created_at)
+                                <span>New</span>
+                            @else
+                                {{ $stock->updated_at->format('D d/m/y H:i:s A') }}
+                            @endif
+                        </td>
                     </tr>
                 @endforeach
             </table>

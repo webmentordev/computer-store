@@ -57,8 +57,8 @@ class AddStock extends Component
         ]);
 
         $this->stock = 0;
-        $this->product = null;
-        $this->provider = null;
+        $this->product = "";
+        $this->provider = "";
         
         session()->flash('success', 'New Stock has been added!');
     }

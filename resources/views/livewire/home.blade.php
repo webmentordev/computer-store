@@ -11,7 +11,7 @@
                             <span class="font-semibold text-blue-600">US$ {{ number_format($product->price, 2) }}</span>
                         </div>
                         @if ($product->stock)
-                            <button class="py-3 px-4 bg-blue-600 text-white font-semibold rounded-lg">Add To Basket</button>
+                            <button wire:click="add_to_cart('{{ $product->slug }}')" class="py-3 px-4 bg-blue-600 text-white font-semibold rounded-lg">Add To Basket</button>
                         @else
                             <span class="py-3 px-4 bg-black text-white font-semibold rounded-lg">Out Of Stock</span>
                         @endif

@@ -16,4 +16,14 @@ class Home extends Component
             'products' => Product::latest()->get()
         ]);
     }
+
+    public function add_to_cart($product){
+        $cart = session()->get('cart');
+        $cart[$product] = [
+            'quantity' => 1,
+            'slug' => $product
+        ];
+        session()->put('cart', $cart);
+        $this->dispatch('cart-count');
+    }
 }
